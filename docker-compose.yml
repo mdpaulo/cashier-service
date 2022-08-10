@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+#  db:
+#    container_name: postgresdb
+#    image: postgres:12-alpine
+#    network_mode: "host"
+  cashierservice:
+    container_name: cashier-service
+    image: openjdk:17-alpine
+    restart: always
+    network_mode: "host"
+#    depends_on:
+#      - db
+    working_dir: /
+    volumes:
+      - "./target/cashier-service-0.1.jar:/cashier-service.jar"
+    command: ['java','-jar','cashier-service.jar']

@@ -9,8 +9,8 @@
 		<relativePath/>
 	</parent>
 	<groupId>portfolio.projects</groupId>
-	<artifactId>cashierService</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>cashier-service</artifactId>
+	<version>0.1</version>
 	<name>cashierService</name>
 	<description>Portfolio project for Spring Boot</description>
 	<properties>
