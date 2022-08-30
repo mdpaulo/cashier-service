@@ -1,17 +1,29 @@
 version: '3.5'
 services:
-#  db:
-#    container_name: postgresdb
-#    image: postgres:12-alpine
-#    network_mode: "host"
-  cashierservice:
+  db:
+    container_name: postgresdb
+    image: postgres:12-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - "db:/var/lib/postgresql/data"
+      - "./scripts/init_db.sql:/docker-entrypoint-initdb.d/init_database.sql"
+  app:
     container_name: cashier-service
     image: openjdk:17-alpine
     restart: always
     network_mode: "host"
-#    depends_on:
-#      - db
+    depends_on:
+      - db
     working_dir: /
     volumes:
       - "./target/cashier-service-0.1.jar:/cashier-service.jar"
+
     command: ['java','-jar','cashier-service.jar']
+volumes:
+  db:
+    driver: local

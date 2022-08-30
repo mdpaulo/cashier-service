@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,7 @@ import portfolio.projects.cashierService.domain.entitties.Product;
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode
 public class OrderItemPK implements Serializable {
     @ManyToOne
     @JoinColumn(name="order_id")
