@@ -14,16 +14,12 @@ services:
       - "./scripts/init_db.sql:/docker-entrypoint-initdb.d/init_database.sql"
   app:
     container_name: cashier-service
-    image: openjdk:17-alpine
+    build:
+      dockerfile: Dockerfile
     restart: always
     network_mode: "host"
     depends_on:
       - db
-    working_dir: /
-    volumes:
-      - "./target/cashier-service-0.1.jar:/cashier-service.jar"
-
-    command: ['java','-jar','cashier-service.jar']
 volumes:
   db:
     driver: local
